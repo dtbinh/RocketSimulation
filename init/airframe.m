@@ -7,14 +7,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Dry mass (kg)
-m       = 10;
+m       = 5;
 
 % Mass moment of inertia matrix. Defined in the body frame. (kg-m2)
 MOI     = [0.5 0 0; 0 5 0; 0 0 5];
 
 % Fin position relative to the rocket center of mass:
 % Axial distance (m)
-l       = 0.25;
+l       = 0.5;
 % Radial distance (m)
 r       = 0.15;
 

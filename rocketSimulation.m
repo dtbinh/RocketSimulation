@@ -80,7 +80,7 @@
 clear;clc;close all;
 addpath(genpath('init'));
 addpath(genpath('modules'));
-addpath(genpath('fcns')); % TODO : Change this directory. Don't like name.
+addpath(genpath('func'));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start Setup
@@ -90,10 +90,6 @@ run 'init/airframe.m'
 
 % Environment parameters
 run 'init/environment.m'
-
-% Airframe and initial conditions. All variables shall be contained in this
-% file.
-run 'init/initConditions.m'
 
 % Allocate data structures and create proper initial condition variables.
 run 'init/initalizeSimulation.m'
@@ -106,9 +102,6 @@ run 'init/initalizeSimulation.m'
 % this is while the Z position is negative because the positive Z direction
 % is into the ground.
 while (sblL(3) <= 0)
-
-    % TODO 
-    % Fix the orientation for a fixed distance (the launch rod length)
 
     % Aero & Propulsion
     run 'modules/aeroProp.m'
@@ -128,6 +121,17 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start visualization
 
+[apogee,sim_ndx_apogee] = max(-sim_data.sblL(3,:));
+figure
+hold on
+tvec_to_apogee = 0:sim_dt:sim_dt*(sim_ndx_apogee-1);
+for ii = 1:3
+    
+   plot(tvec_to_apogee,-sim_data.wblB(ii,1:sim_ndx_apogee))
+ 
+end
+
+figure
 % Plot
 %sim_ndx = floor(sim_ndx / 2);
 x = sim_data.sblL(1,1:sim_ndx-1);

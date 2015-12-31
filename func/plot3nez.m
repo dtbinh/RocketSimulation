@@ -58,7 +58,7 @@ xx = [xl(1) xl(1) xl(2) xl(2) xl(1)];
 yy = [yl(1) yl(2) yl(2) yl(1) yl(1)];
 zz = [apg apg apg apg apg];
 plot3(xx,yy,zz,'r')
-
+axis([-500 500 -500 500 0 round(max(-z))])
 % Put main plot on top
 uistack(mainHdl,'top')
 

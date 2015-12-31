@@ -11,7 +11,7 @@ wind_speed      = 10;
 wind_direction  = 240;
 
 % Launch rod (m)
-rod_len         = 1.5;
+rod_len         = 2;
 
 % Initial position (m)
 initX           = 0;
