@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Wind speed (knts) and direction from (deg) where 0 deg is North.
-wind_speed      = 10;
+wind_speed      = 20;
 wind_direction  = 240;
 
 % Launch rod (m)
@@ -23,6 +23,10 @@ initRollAngle   = 0;
 initPitchAngle  = 85;
 initYawAngle    = 0;
 
+% Molecular Viscosity of air, from Anderson 5e example problem (N / ms)
+mol_visc = 1.794e-5;
+
+% End user declerations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Map of inputs to simulation parameters
 

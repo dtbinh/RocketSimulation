@@ -77,6 +77,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Clear workspace and add resource paths
 clear;clc;close all;
 addpath(genpath('init'));
 addpath(genpath('modules'));
@@ -88,7 +89,7 @@ addpath(genpath('func'));
 % Airframe parameters
 run 'init/airframe.m'
 
-% Environment parameters
+% Environment parameters (including the setup of the rocket on the pad)
 run 'init/environment.m'
 
 % Allocate data structures and create proper initial condition variables.
@@ -137,17 +138,15 @@ figure
 x = sim_data.sblL(1,1:sim_ndx-1);
 y = sim_data.sblL(2,1:sim_ndx-1);
 z = sim_data.sblL(3,1:sim_ndx-1);
-u = gradient(x);
-v = gradient(y);
-w = gradient(z);
+u = sim_data.vblL(1,1:sim_ndx-1);
+v = sim_data.vblL(2,1:sim_ndx-1);
+w = sim_data.vblL(3,1:sim_ndx-1);
 roll = sim_data.eblL(1,1:sim_ndx-1);
 pitch = sim_data.eblL(2,1:sim_ndx-1);
 yaw = sim_data.eblL(3,1:sim_ndx-1);
 
-scale_factor = 2;
-step = 100;
-varargin = 'md90';
-
+% plot3(x,y,z)
+% box on
 %figure
 %set(gcf,'name','sblL','numbertitle','off')
 %plot3(x,y,-z)
@@ -158,7 +157,8 @@ varargin = 'md90';
 stp = 10;
 plot3nez(x(1:stp:end),y(1:stp:end),z(1:stp:end))
 %trajectory3(x,y,z,pitch,roll,yaw,scale_factor,step,varargin)
-%quiver3(x,y,-z,u,v,w,2)
+hold on
+% quiver3(x,y,-z,u,v,w,2)
 dataplots = false;
 
 if dataplots

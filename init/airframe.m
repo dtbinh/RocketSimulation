@@ -18,8 +18,9 @@ l       = 0.5;
 % Radial distance (m)
 r       = 0.15;
 
-% Fin area (m2)
+% Fin area (m2) and aspect ratio
 S       = 0.05;
+AR      = 2;
 
 % Number of fins
 numFins = 4;
