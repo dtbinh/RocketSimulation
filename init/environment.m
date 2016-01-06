@@ -20,8 +20,8 @@ initZ           = 0;
 
 % Attitude on launch pad in Euler angles (deg)
 initRollAngle   = 0;
-initPitchAngle  = 85;
-initYawAngle    = 0;
+initPitchAngle  = 45;
+initYawAngle    = 10;
 
 % Molecular Viscosity of air, from Anderson 5e example problem (N / ms)
 mol_visc = 1.794e-5;

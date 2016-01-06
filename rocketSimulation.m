@@ -29,7 +29,7 @@
 %
 %   s:  Position
 %   v:  Velocity
-%   e:  Euler angles (theta, phi, psi)
+%   e:  Euler angles (theta, phi, psi) w/ 3-2-1 rotation sequence
 %   w:  Angular velocity
 %   q:  Quaternion
 %   f:  Force
