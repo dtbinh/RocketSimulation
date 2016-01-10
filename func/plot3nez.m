@@ -8,7 +8,7 @@ function [  ] = plot3nez( n,e,z )
 % z = -[0 100 250 400 600 650 400 300];
 
 % Speed up display by not plotting every point
-point_distance = 20;
+point_distance = 5;
 n_plot = n(1:point_distance:end);
 e_plot = e(1:point_distance:end);
 z_plot = z(1:point_distance:end);
