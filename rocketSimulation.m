@@ -10,6 +10,13 @@
 % thin aerofoil theory for the fins. See /docs for more information.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Usage:
+%
+% Run this file (rocketSimulation.m) to run the simulation. Set rocket
+% airframe settings in init/airframe.m, and enviornmental conditions in
+% init/environment.m (Including setup of rocket for launch).
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Terminology & Conventions:
 %
 % The standards used in this program are adapted from Zipfel's text:

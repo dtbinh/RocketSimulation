@@ -7,7 +7,14 @@ function [  ] = plot3nez( n,e,z )
 % e = [0 5 5 6 6 5 4 5];
 % z = -[0 100 250 400 600 650 400 300];
 
-mainHdl = plot3(n,e,-z);
+% Speed up display by not plotting every point
+point_distance = 20;
+n_plot = n(1:point_distance:end);
+e_plot = e(1:point_distance:end);
+z_plot = z(1:point_distance:end);
+
+% Handle of the plot object
+mainHdl = plot3(n_plot,e_plot,-z_plot);
 
 % Cosmetic settings
 box on
@@ -32,6 +39,7 @@ zl = zlim;
 set(gca,'ztick',[0 max(-z)])
 apgLbl = sprintf('Apogee: %d',round(max(-z)));
 set(gca,'zticklabel',{'0', apgLbl})
+
 % Reverse E axis direction and flip N axis location
 axis ij
 set(gca, 'XAxisLocation', 'bottom')
@@ -43,15 +51,15 @@ quiver3(zeros(3,1),zeros(3,1),zeros(3,1),[1;0;0],[0;1;0],[0;0;-1],...
 
 % NZ Projection
 hold on
-plot3(n,yl(1)*ones(length(n)),-z,'--c')
+plot3(n_plot,yl(1)*ones(length(n_plot)),-z_plot,'--c')
 
 % NE Projection
 hold on
-plot3(n,e,zl(1)*ones(length(n)),'--m')
+plot3(n_plot,e_plot,zl(1)*ones(length(n_plot)),'--m')
 
 % EZ Projection
 hold on
-plot3(xl(2)*ones(length(n)),e,-z,'--g')
+plot3(xl(2)*ones(length(n_plot)),e_plot,-z_plot,'--g')
 
 % Apogee Display
 hold on
