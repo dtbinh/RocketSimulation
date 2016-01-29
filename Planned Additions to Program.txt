@@ -1,4 +1,5 @@
 Planned Additions
 
+- Incorporate on-board software tasks (estimation and control)
 - Wind gust
 - Analysis module

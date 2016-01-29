@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Wind speed (knts) and direction from (deg) where 0 deg is North.
-wind_speed      = 20;
+wind_speed      = 30;
 wind_direction  = 240;
 
 % Launch rod (m)

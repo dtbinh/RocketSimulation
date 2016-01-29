@@ -9,8 +9,8 @@
 faB = zeros(3,1);
 mB = zeros(3,1);
 
-% Get updated density
-[~,~,~, rho] = atmosisa(-sblL(3));
+% Get updated speed of sound, density
+[~, a,~, rho] = atmosisa(-sblL(3));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start body aerodynamics
@@ -33,6 +33,9 @@ vwbL = -vbwL;
 
 % Dynamic pressure
 qbar = 0.5 * rho * norm(vwbL);
+
+% Mach number
+mach = norm(vwbL) / a;
 
 % Angle of attack of the body
 vwbB = Tbl * vwbL;
@@ -85,15 +88,22 @@ for finAngle = finAngles
 
     % Solving for drag on the fin from flat plate viscous drag
     % Get Reynold's number from the relative velocity
+    % C_d_fin only considers one side of the fin, so need to use area * 2.
     Re_c = rho * norm(vfwF) * S / AR / mol_visc;
-    C_d_fin = 1.328 / sqrt(Re_c);
-    finDrag = qbar * S * C_d_fin * cos(beta);
+    C_d_fin = 1.328 / sqrt(Re_c); % From Blasius, for laminar flow.
+
+
+    % Prandtl-Glauert compressibility correction
+    C_d_fin_comp = C_d_fin / sqrt(1 - mach.^2);
+    S_comp = S / sqrt(1 - mach.^2);
+    % TODO: Change to Gothart correction. Will also change area of fin used
+    % by factor of 1/sqrt(1-mach^2). Also should correct for finite wing.
+
+    % Arrive at drag on the fin
+    finDrag = qbar * (2 * S_comp) * C_d_fin_comp * cos(beta);
 
     % Aerodynamic force on the fin in fin coordinates.
     faF = [-finDrag; 0; -finLift];
-
-    % Prandl-Gluart compressiblity correction %% TODO (also fix spelling)
-    % TODO
     
     % Write forces and moments in the body frame. Recall faB = Tbf*faF:
     faB = faB + Tfb' * faF;

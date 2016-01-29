@@ -111,6 +111,12 @@ run 'init/initalizeSimulation.m'
 % is into the ground.
 while (sblL(3) <= 0)
 
+    % State Estimation (On-board)
+    run 'modules/estimator.m'
+    
+    % Controller (On-board)
+    run 'modules/controller.m'
+    
     % Aero & Propulsion
     run 'modules/aeroProp.m'
 
@@ -124,6 +130,9 @@ while (sblL(3) <= 0)
     sim_ndx = sim_ndx + 1;
     sim_t = sim_t + sim_dt;
 end
+
+% Time vector for analysis. Ndx-2 accounts for t=0 at ndx=1.
+sim_tvec = 0:sim_dt:(sim_dt*(sim_ndx-2));
 
 % End simulation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -162,7 +171,7 @@ yaw = sim_data.eblL(3,1:sim_ndx-1);
 %zlabel('Z')
 %figure
 stp = 10;
-plot3nez(x(1:stp:end),y(1:stp:end),z(1:stp:end))
+plot3nez(x,y,z)
 %trajectory3(x,y,z,pitch,roll,yaw,scale_factor,step,varargin)
 hold on
 % quiver3(x,y,-z,u,v,w,2)

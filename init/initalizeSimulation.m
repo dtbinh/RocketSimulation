@@ -8,7 +8,7 @@
 sim_dt = 0.01;          % Time step (s)
 sim_ndx = 1;            % Index of simulation step
 sim_t = 0;              % Sim time (s)
-sim_N = 5000;          % Number of steps
+sim_N = 40000;          % Number of steps
 
 % Gravity acceleration constant
 g = 9.81;
