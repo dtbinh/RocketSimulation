@@ -78,6 +78,11 @@ for finAngle = finAngles
     % Angle of attack seen by the fin
     alfa = atan2(vfwF(3),vfwF(1));
 
+    % Handle seperation at 30 degrees (0.52 rad)
+    if abs(alfa) > 0.52
+        alfa = 0;
+    end
+    
     % Side slip angle
     beta = asin(vfwF(2)/norm(vfwF));
 
@@ -91,7 +96,6 @@ for finAngle = finAngles
     % C_d_fin only considers one side of the fin, so need to use area * 2.
     Re_c = rho * norm(vfwF) * S / AR / mol_visc;
     C_d_fin = 1.328 / sqrt(Re_c); % From Blasius, for laminar flow.
-
 
     % Prandtl-Glauert compressibility correction
     C_d_fin_comp = C_d_fin / sqrt(1 - mach.^2);

@@ -1,0 +1,21 @@
+commit e4bbea3fc5e9ecbcdf524624f1975d95bfacb093
+tree 383e23ca68b4d188ff6117dbe989eec73ab6366a
+parent db6d616cf8114589dcb448b7d6426a936a0a683e
+author Jack Ridderhof <jhr@mailbox.org> 1452386899 -0500
+committer Jack Ridderhof <jhr@mailbox.org> 1452386899 -0500
+
+    Fixing issue with previous commit. The spacing between points being plotted for the trajectory was too large and the aparent apogee was around 100 meters too low. Fixed by lowering the spacing and no display lag was introduced.
+
+diff --git a/func/plot3nez.m b/func/plot3nez.m
+index 5143673..0d72691 100755
+--- a/func/plot3nez.m
++++ b/func/plot3nez.m
+@@ -8,7 +8,7 @@ function [  ] = plot3nez( n,e,z )
+ % z = -[0 100 250 400 600 650 400 300];
+ 
+ % Speed up display by not plotting every point
+-point_distance = 20;
++point_distance = 5;
+ n_plot = n(1:point_distance:end);
+ e_plot = e(1:point_distance:end);
+ z_plot = z(1:point_distance:end);

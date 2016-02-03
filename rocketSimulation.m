@@ -89,6 +89,7 @@ clear;clc;close all;
 addpath(genpath('init'));
 addpath(genpath('modules'));
 addpath(genpath('func'));
+addpath(genpath('gui'));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start Setup
@@ -138,80 +139,82 @@ sim_tvec = 0:sim_dt:(sim_dt*(sim_ndx-2));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Start visualization
 
-[apogee,sim_ndx_apogee] = max(-sim_data.sblL(3,:));
-figure
-hold on
-tvec_to_apogee = 0:sim_dt:sim_dt*(sim_ndx_apogee-1);
-for ii = 1:3
-    
-   plot(tvec_to_apogee,-sim_data.wblB(ii,1:sim_ndx_apogee))
- 
-end
+run 'gui/graphics.m'
 
-figure
-% Plot
-%sim_ndx = floor(sim_ndx / 2);
-x = sim_data.sblL(1,1:sim_ndx-1);
-y = sim_data.sblL(2,1:sim_ndx-1);
-z = sim_data.sblL(3,1:sim_ndx-1);
-u = sim_data.vblL(1,1:sim_ndx-1);
-v = sim_data.vblL(2,1:sim_ndx-1);
-w = sim_data.vblL(3,1:sim_ndx-1);
-roll = sim_data.eblL(1,1:sim_ndx-1);
-pitch = sim_data.eblL(2,1:sim_ndx-1);
-yaw = sim_data.eblL(3,1:sim_ndx-1);
-
-% plot3(x,y,z)
-% box on
-%figure
-%set(gcf,'name','sblL','numbertitle','off')
-%plot3(x,y,-z)
-%xlabel('N')
-%ylabel('E')
-%zlabel('Z')
-%figure
-stp = 10;
-plot3nez(x,y,z)
-%trajectory3(x,y,z,pitch,roll,yaw,scale_factor,step,varargin)
-hold on
-% quiver3(x,y,-z,u,v,w,2)
-dataplots = false;
-
-if dataplots
-   figure
-   set(gcf,'name','mB','numbertitle','off')
-   timeArr = 0:sim_dt:sim_t;
-   for ii = 1:3
-      subplot(3,1,ii)
-      plot(timeArr, sim_data.mB(ii,1:sim_ndx-1))
-      ylabel(ii)
-      xlabel('t')
-   end
-end
-
-if dataplots
-   figure
-   set(gcf,'name','wblB','numbertitle','off')
-   timeArr = 0:sim_dt:sim_t;
-   for ii = 1:3
-      subplot(3,1,ii)
-      plot(timeArr, sim_data.wblB(ii,1:sim_ndx-1))
-      ylabel(ii)
-      xlabel('t')
-   end
-end
-
-if dataplots
-   figure
-   set(gcf,'name','vblB','numbertitle','off')
-   timeArr = 0:sim_dt:sim_t;
-   for ii = 1:3
-      subplot(3,1,ii)
-      plot(timeArr, sim_data.vblB(ii,1:sim_ndx-1))
-      ylabel(ii)
-      xlabel('t')
-   end
-end
+% [apogee,sim_ndx_apogee] = max(-sim_data.sblL(3,:));
+% figure
+% hold on
+% tvec_to_apogee = 0:sim_dt:sim_dt*(sim_ndx_apogee-1);
+% for ii = 1:3
+%     
+%    plot(tvec_to_apogee,-sim_data.wblB(ii,1:sim_ndx_apogee))
+%  
+% end
+% 
+% figure
+% % Plot
+% %sim_ndx = floor(sim_ndx / 2);
+% x = sim_data.sblL(1,1:sim_ndx-1);
+% y = sim_data.sblL(2,1:sim_ndx-1);
+% z = sim_data.sblL(3,1:sim_ndx-1);
+% u = sim_data.vblL(1,1:sim_ndx-1);
+% v = sim_data.vblL(2,1:sim_ndx-1);
+% w = sim_data.vblL(3,1:sim_ndx-1);
+% roll = sim_data.eblL(1,1:sim_ndx-1);
+% pitch = sim_data.eblL(2,1:sim_ndx-1);
+% yaw = sim_data.eblL(3,1:sim_ndx-1);
+% 
+% % plot3(x,y,z)
+% % box on
+% %figure
+% %set(gcf,'name','sblL','numbertitle','off')
+% %plot3(x,y,-z)
+% %xlabel('N')
+% %ylabel('E')
+% %zlabel('Z')
+% %figure
+% stp = 10;
+% plot3nez(x,y,z)
+% %trajectory3(x,y,z,pitch,roll,yaw,scale_factor,step,varargin)
+% hold on
+% % quiver3(x,y,-z,u,v,w,2)
+% dataplots = false;
+% 
+% if dataplots
+%    figure
+%    set(gcf,'name','mB','numbertitle','off')
+%    timeArr = 0:sim_dt:sim_t;
+%    for ii = 1:3
+%       subplot(3,1,ii)
+%       plot(timeArr, sim_data.mB(ii,1:sim_ndx-1))
+%       ylabel(ii)
+%       xlabel('t')
+%    end
+% end
+% 
+% if dataplots
+%    figure
+%    set(gcf,'name','wblB','numbertitle','off')
+%    timeArr = 0:sim_dt:sim_t;
+%    for ii = 1:3
+%       subplot(3,1,ii)
+%       plot(timeArr, sim_data.wblB(ii,1:sim_ndx-1))
+%       ylabel(ii)
+%       xlabel('t')
+%    end
+% end
+% 
+% if dataplots
+%    figure
+%    set(gcf,'name','vblB','numbertitle','off')
+%    timeArr = 0:sim_dt:sim_t;
+%    for ii = 1:3
+%       subplot(3,1,ii)
+%       plot(timeArr, sim_data.vblB(ii,1:sim_ndx-1))
+%       ylabel(ii)
+%       xlabel('t')
+%    end
+% end
 
 % End visualization. Thanks for reading!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
